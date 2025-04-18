@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diabetes Resources | Team DRIP</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      grid-column: 1/-1; 
+    background-image: url('../images/lightbluebg.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+      color: #003344;
+      margin: 0;
+      padding: 0;
+    }
+
+    header, .footer {
+      background-color: #004d6f;
+      color: white;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #b2ebf2;
+    }
+
+    .intro-type {
+      font-size: 24px;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      border-left: 4px solid #00acc1;
+      padding-left: 15px;
+      white-space: pre-wrap;
+      overflow: hidden;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink-caret {
+      50% { border-color: transparent; }
+    }
+
+    .resources-section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 30px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 36px;
+      color: #006064;
+      margin-bottom: 30px;
+    }
+
+    .resource-category {
+      margin-bottom: 50px;
+    }
+
+    .category-title {
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: #007c91;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .resource-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .resource-card:hover {
+      transform: rotateZ(3deg) scale(1.03);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .resource-card h3 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #004d6f;
+    }
+
+    .resource-card p {
+      font-size: 15px;
+      line-height: 1.4;
+      color: #444;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .footer a {
+      color: #b2ebf2;
+      margin: 0 12px;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <div class="logo">Team DRIP</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="resources.html">Diabetes Resources</a></li>
+      <li><a href="pamphlet.html">Educational Pamphlet</a></li>
+      <li><a href="mentalhealth.html">Mental Health & Activities</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="intro-type">Welcome to our curated set of diabetes resources — from blood sugar tracking to home remedies, we’ve gathered trustworthy tools to empower you in your health journey.
+</section>
+
+<section class="resources-section">
+  <h2>Helpful Diabetes Resources</h2>
+
+  <!-- BLOOD TRACKING -->
+  <div class="resource-category">
+    <h3 class="category-title">🩸 Blood Glucose Tracking</h3>
+    <div class="resource-grid">
+      <div class="resource-card">
+        <h3>MySugr App</h3>
+        <p>A friendly diabetes tracker app for logging blood glucose, meals, and activity. Syncs with most meters.</p>
+        <a href="https://mysugr.com/" target="_blank">Visit →</a>
+      </div>
+      <div class="resource-card">
+        <h3>One Drop</h3>
+        <p>Provides real-time insights, reminders, and expert coaching for managing your numbers.</p>
+        <a href="https://onedrop.today/" target="_blank">Visit →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALORIE COUNTING -->
+  <div class="resource-category">
+    <h3 class="category-title">🥗 Calorie & Carb Counting</h3>
+    <div class="resource-grid">
+      <div class="resource-card">
+        <h3>Carb Manager</h3>
+        <p>Track carbs, macros, and more. Perfect for those managing insulin dosing or carb intake.</p>
+        <a href="https://www.carbmanager.com/" target="_blank">Visit →</a>
+      </div>
+      <div class="resource-card">
+        <h3>MyFitnessPal</h3>
+        <p>Tracks food, exercise, and weight. Includes a massive food database and barcode scanning.</p>
+        <a href="https://www.myfitnesspal.com/" target="_blank">Visit →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WARNING SIGNS -->
+  <div class="resource-category">
+    <h3 class="category-title">🚨 Warning Signs & Symptoms</h3>
+    <div class="resource-grid">
+      <div class="resource-card">
+        <h3>CDC Diabetes Info</h3>
+        <p>Learn early symptoms of Type 1 and 2 diabetes, including increased thirst, fatigue, and slow-healing wounds.</p>
+        <a href="https://www.cdc.gov/diabetes/basics/symptoms.html" target="_blank">Visit →</a>
+      </div>
+      <div class="resource-card">
+        <h3>Diabetes UK: Signs</h3>
+        <p>Explore detailed symptom checklists and when to see a doctor.</p>
+        <a href="https://www.diabetes.org.uk/diabetes-the-basics/diabetes-symptoms" target="_blank">Visit →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIY SOLUTIONS -->
+  <div class="resource-category">
+    <h3 class="category-title">🧪 DIY & Low-Cost Solutions</h3>
+    <div class="resource-grid">
+      <div class="resource-card">
+        <h3>Low-Tech Insulin Cooling</h3>
+        <p>How to build a clay-pot refrigerator (zeer pot) for insulin in low-resource settings.</p>
+        <a href="https://ghdonline.org/diabetes/discussion/clay-pot-cooling-systems-for-insulin-storage/" target="_blank">Visit →</a>
+      </div>
+      <div class="resource-card">
+        <h3>Diabetes Toolbox PDF</h3>
+        <p>Practical home remedies, alternative diet strategies, and glucose stabilization tips.</p>
+        <a href="https://static.diabetesdaily.com/content/pdf/Diabetes_Toolbox.pdf" target="_blank">Visit →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+    <img src="images/driplogo.png" alt="Team DRIP Logo" class="logo-img" style="width: 100%;
+    height: auto;">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <a href="mheal-contact@umich.edu">Email Us</a>
+        <a href="https://forms.gle/yourformlink" target="_blank">Contact Form</a>
+      </div>
+      <div class="footer-column">
+        <h4>Socials</h4>
+        <a href="https://www.instagram.com/mheal_um/?hl=en">Instagram</a>
+        <a href="https://www.linkedin.com/company/m-heal">LinkedIn</a>
+        <a href="https://mheal.engin.umich.edu/drip">Team Website</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

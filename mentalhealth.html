@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Health & Activities | Team DRIP</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e0f7fa;
+      /* color: #003f5c; */
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0077b6;
+      padding: 1rem 2rem;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .about-team {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .resource-list button {
+      margin: 10px;
+      padding: 0.75rem 1.5rem;
+      background-color: #00b4d8;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      z-index: 999;
+      width: 80%;
+      max-width: 500px;
+      transition: all 0.3s ease;
+    }
+
+    .popup.show {
+      display: block;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .popup h3 {
+      margin-top: 0;
+    }
+
+    .popup button {
+      margin-top: 1rem;
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .video-carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 2rem;
+      padding: 2rem;
+      scroll-snap-type: x mandatory;
+    }
+
+    .video-carousel iframe {
+      flex: 0 0 auto;
+      width: 300px;
+      height: 200px;
+      border-radius: 12px;
+      scroll-snap-align: start;
+    }
+
+    .info-cards {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 2rem;
+      animation: shuffle 20s infinite;
+    }
+
+    .info-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
+      transition: transform 0.5s;
+    }
+
+    @keyframes shuffle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .footer .logo-img {
+    max-width: 120px;
+  }
+  .footer-content {
+    display: flex;
+    gap: 2rem;
+  }
+  .footer-column {
+    min-width: 150px;
+  }
+  .footer-column h4 {
+    margin-bottom: 0.5rem;
+  }
+  .footer-column a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 0.3rem;
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ffffffdd;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #0177a8;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background-color: #0177a8;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+  }
+  .nav-links a:hover {
+    background-color: #015c85;
+  }
+  
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: linear-gradient(135deg, #d1f4ff, #ffffff);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  z-index: 999;
+  width: 85%;
+  max-width: 500px;
+  transition: all 0.3s ease-in-out;
+}
+
+.popup.show {
+  display: block;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup h3 {
+  margin-top: 0;
+  color: #0077b6;
+}
+
+.popup p {
+  margin: 1rem 0;
+}
+
+.popup a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #0077b6;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.popup button {
+  margin-top: 1rem;
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Enhanced Carousel Styling */
+.video-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+  padding: 2rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.video-carousel::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.video-carousel iframe {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 200px;
+  border-radius: 12px;
+  scroll-snap-align: start;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* Info Cards Section */
+.info-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.info-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-left: 6px solid #00b4d8;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  width: 280px;
+  transition: transform 0.5s;
+  animation: shuffleAnim 12s infinite ease-in-out alternate;
+}
+
+/* Shuffle Animation */
+@keyframes shuffleAnim {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+
+   
+  </style>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">Team DRIP</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="resources.html">Diabetes Resources</a></li>
+      <li><a href="pamphlet.html">Educational Pamphlet</a></li>
+      <li><a href="mentalhealth.html">Mental Health & Activities</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="about-team">
+  <h2>Mental Health & Wellbeing</h2>
+  <p>Click a topic to learn more about managing your mental health while living with diabetes.</p>
+  <div class="resource-list">
+    <button onclick="showPopup('anxiety')">Anxiety</button>
+    <button onclick="showPopup('depression')">Depression</button>
+    <button onclick="showPopup('burnout')">Diabetes Burnout</button>
+    <button onclick="showPopup('stress')">Chronic Stress</button>
+  </div>
+</section>
+
+<!-- POPUPS -->
+<div id="anxiety" class="popup">
+  <h3>Anxiety</h3>
+  <p>Practice grounding techniques like deep breathing or the 5-4-3-2-1 method. Stay active and seek peer support.</p>
+  <a href="https://adaa.org/" target="_blank">Visit ADAA for Help</a>
+  <button onclick="closePopup('anxiety')">Close</button>
+</div>
+<div id="depression" class="popup">
+  <h3>Depression</h3>
+  <p>Start small with daily goals. Journaling and talking to a professional can help lift the fog.</p>
+  <a href="https://www.nami.org/" target="_blank">Visit NAMI</a>
+  <button onclick="closePopup('depression')">Close</button>
+</div>
+<div id="burnout" class="popup">
+  <h3>Diabetes Burnout</h3>
+  <p>It’s okay to take breaks. Reconnect with your ‘why’ and talk to others managing diabetes too.</p>
+  <a href="https://diabetes.org/healthy-living/emotional-well-being" target="_blank">Diabetes.org Guide</a>
+  <button onclick="closePopup('burnout')">Close</button>
+</div>
+<div id="stress" class="popup">
+  <h3>Chronic Stress</h3>
+  <p>Stretch, sleep, and set boundaries. Daily stress logs can help track triggers and progress.</p>
+  <a href="https://www.mind.org.uk/" target="_blank">Visit Mind UK</a>
+  <button onclick="closePopup('stress')">Close</button>
+</div>
+
+<section>
+  <h2 style="text-align:center; padding-top:1rem; color: white;">Mental Health Activity Videos</h2>
+  <div class="video-carousel">
+    <iframe src="https://www.youtube.com/embed/ZToicYcHIOU" title="Mindfulness Meditation" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/inpok4MKVLM" title="Breathing Exercise" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/qzR62JJCMBQ" title="Stress Relief Tips" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/MIr3RsUWrdo" title="Yoga for Beginners" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/U9YKY7fdwyg" title="5 Min Morning Stretch" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/sTANio_2E0Q" title="Progressive Muscle Relaxation" frameborder="0" allowfullscreen></iframe>
+  </div>
+</section>
+
+<section>
+  <h2 style="text-align:center; color: white;">Mental Health Fact Cards</h2>
+  <div class="info-cards">
+    <div class="info-card">People with diabetes are 2–3x more likely to develop depression.</div>
+    <div class="info-card">Exercise releases endorphins, which boost your mood naturally.</div>
+    <div class="info-card">Gratitude journaling can help lower stress levels significantly.</div>
+    <div class="info-card">Sleep plays a key role in emotional regulation and insulin sensitivity.</div>
+    <div class="info-card">Talking to someone you trust can lighten emotional burdens.</div>
+    <div class="info-card">Even 5 minutes of deep breathing can reduce cortisol levels.</div>
+    <div class="info-card">Loneliness can impact your physical health—stay socially connected.</div>
+    <div class="info-card">Practicing mindfulness helps manage both stress and blood sugar.</div>
+    <div class="info-card">Sticking to a routine can help reduce anxiety and improve focus.</div>
+    <div class="info-card">Drinking water and moving often reduces fatigue and stress.</div>
+    <div class="info-card">Visualizing positive outcomes can improve mental resilience.</div>
+    <div class="info-card">Nature exposure—even photos—can reduce heart rate and stress.</div>
+    <div class="info-card">You’re not alone—millions manage diabetes and thrive every day.</div>
+    <div class="info-card">Music therapy has been shown to relieve diabetic distress.</div>
+    <div class="info-card">Laughter boosts immunity and lowers blood pressure. Watch a comedy!</div>
+    <div class="info-card">Mental health check-ins are just as important as glucose checks.</div>
+  </div>
+</section>
+
+<footer class="footer">
+  <img src="images/driplogo.png" alt="Team DRIP Logo" class="logo-img" style="width: 100%; height: auto;">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h4>Contact</h4>
+      <a href="mheal-contact@umich.edu">Email Us</a>
+      <a href="https://forms.gle/yourformlink" target="_blank">Contact Form</a>
+    </div>
+    <div class="footer-column">
+      <h4>Socials</h4>
+      <a href="https://www.instagram.com/mheal_um/?hl=en">Instagram</a>
+        <a href="https://www.linkedin.com/company/m-heal">LinkedIn</a>
+        <a href="https://mheal.engin.umich.edu/drip">Team Website</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function showPopup(id) {
+    document.getElementById(id).classList.add('show');
+  }
+
+  function closePopup(id) {
+    document.getElementById(id).classList.remove('show');
+  }
+</script>
+</body>
+</html>

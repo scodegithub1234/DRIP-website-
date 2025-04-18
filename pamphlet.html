@@ -1,0 +1,557 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pamphlet | Team DRIP</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #f0f8ff;
+      overflow-x: hidden;
+      
+    }
+
+    .roadmap-section {
+      position: relative;
+      height: 2000px;
+      background-image: url('../images/lightbluebg.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+      padding-top: 100px;
+    }
+
+    .roadmap-svg {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 2000px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .roadmap-path-bg {
+      stroke: #0077b620;
+      stroke-width: 4;
+      fill: none;
+    }
+
+    .roadmap-path {
+      stroke: #0077b6;
+      stroke-width: 4;
+      fill: none;
+      stroke-dasharray: 5000;
+      stroke-dashoffset: 5000;
+      transition: stroke-dashoffset 0.2s ease-out;
+    }
+
+    .roadmap-leg {
+      position: absolute;
+      font-size: 2rem;
+      z-index: 2;
+      transform: translate(-50%, -50%);
+      transition: top 0.1s, left 0.1s;
+    }
+
+    .roadmap-cards {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .roadmap-card {
+      width: 280px;
+      padding: 1rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: absolute;
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+
+    .roadmap-card.show {
+      opacity: 1;
+    }
+
+    .roadmap-card:nth-child(odd) {
+      left: 5%;
+    }
+
+    .roadmap-card:nth-child(even) {
+      right: 5%;
+    }
+    .roadmap-card {
+    width: 280px;
+    padding: 1rem;
+    background: #ffffff;
+    border-radius: 15px;
+    border-left: 6px solid #00b4d8;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    opacity: 0;
+    transition: all 0.6s ease;
+    cursor: pointer;
+    }
+
+    .roadmap-card h4 {
+    margin-top: 0;
+    color: #0077b6;
+    }
+
+    .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 119, 182, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    }
+
+    .popup-content {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+    }
+
+    .popup-content h3 {
+    color: #023e8a;
+    }
+
+    .popup-content a {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #0077b6;
+    text-decoration: underline;
+    }
+
+    .popup-content button {
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #00b4d8;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+    }
+    /* Popup overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 119, 182, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Popup content box */
+.popup-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  max-width: 90%;
+  width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Button and link styling */
+.popup-box h3 {
+  color: #023e8a;
+  margin-top: 0;
+}
+
+.popup-box p {
+  color: #333;
+}
+
+.popup-box a {
+  display: block;
+  margin: 1rem 0;
+  color: #0077b6;
+  text-decoration: underline;
+}
+
+.popup-close {
+  background: #00b4d8;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+/* Card hover animation */
+.roadmap-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.roadmap-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Popup overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 119, 182, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Popup content */
+.popup-box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  max-width: 90%;
+  width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Close "X" button */
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0077b6;
+  cursor: pointer;
+}
+
+/* Typography and links */
+.popup-box h3 {
+  color: #023e8a;
+  margin-top: 0;
+}
+
+.popup-box p {
+  color: #333;
+}
+
+.popup-box a {
+  display: block;
+  margin: 1rem 0;
+  color: #0077b6;
+  text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Prevent scroll when popup is open */
+body.popup-open {
+  overflow: hidden;
+}
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ffffffdd;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #0177a8;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background-color: #0177a8;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+  }
+  .nav-links a:hover {
+    background-color: #015c85;
+  }
+
+  </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+          <div class="logo">Team DRIP</div>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="resources.html">Diabetes Resources</a></li>
+            <li><a href="pamphlet.html">Educational Pamphlet</a></li>
+            <li><a href="mentalhealth.html">Mental Health & Activities</a></li>
+          </ul>
+        </nav>
+      </header>
+    
+      <section class="about-team">
+        <h2>Learn About Diabetic Amputation</h2>
+        <!-- <p>Click the button below to view more info in a pop-up.</p>
+        <button onclick="showPopup('amputation-info')">What Causes Diabetic Amputation?</button>
+        <div id="amputation-info" class="popup">
+          <h3>Causes and Prevention</h3>
+          <p>Diabetic amputations are often the result of poor circulation and infection. Regular checkups, foot care, and glucose management are essential to prevention.</p>
+          <button onclick="closePopup('amputation-info')">Close</button>
+        </div> -->
+      </section>
+  <section class="roadmap-section">
+    <svg class="roadmap-svg" viewBox="0 0 600 2000" preserveAspectRatio="none">
+      <path class="roadmap-path-bg"
+        d="M300 0 
+           C 500 200, 100 400, 300 600 
+           C 500 800, 100 1000, 300 1200 
+           C 500 1400, 100 1600, 300 1800" />
+      <path class="roadmap-path"
+        d="M300 0 
+           C 500 200, 100 400, 300 600 
+           C 500 800, 100 1000, 300 1200 
+           C 500 1400, 100 1600, 300 1800" />
+    </svg>
+
+    <div class="roadmap-leg" id="roadmap-leg"><img src="images/kneeicon.png" alt="Knee icon"></div>
+
+    <div class="roadmap-cards">
+        <div class="roadmap-card" style="top: 100px;" onclick="showPopup('popup-step1')">
+          <h4>Step 1: Understand the Risks</h4>
+          <p>Recognize how diabetes can lead to complications like nerve damage or poor circulation.</p>
+        </div>
+        <div class="roadmap-card" style="top: 300px;" onclick="showPopup('popup-step2')">
+          <h4>Step 2: Monitor Blood Sugar</h4>
+          <p>Track your glucose levels regularly to prevent spikes that damage nerves.</p>
+        </div>
+        <div class="roadmap-card" style="top: 500px;" onclick="showPopup('popup-step3')">
+          <h4>Step 3: Inspect Feet Daily</h4>
+          <p>Look for cuts, sores, and swelling to catch infections early.</p>
+        </div>
+        <div class="roadmap-card" style="top: 700px;" onclick="showPopup('popup-step4')">
+          <h4>Step 4: Wear Proper Footwear</h4>
+          <p>Use diabetic-friendly shoes to avoid pressure points and injuries.</p>
+        </div>
+        <div class="roadmap-card" style="top: 900px;" onclick="showPopup('popup-step5')">
+          <h4>Step 5: Exercise Regularly</h4>
+          <p>Movement helps with circulation and controlling blood sugar levels.</p>
+        </div>
+        <div class="roadmap-card" style="top: 1100px;" onclick="showPopup('popup-step6')">
+          <h4>Step 6: Manage Diet</h4>
+          <p>Choose foods that stabilize glucose and promote healing.</p>
+        </div>
+        <div class="roadmap-card" style="top: 1300px;" onclick="showPopup('popup-step7')">
+          <h4>Step 7: Routine Doctor Visits</h4>
+          <p>Early intervention can prevent escalation of foot-related issues.</p>
+        </div>
+        <div class="roadmap-card" style="top: 1500px;" onclick="showPopup('popup-step8')">
+          <h4>Step 8: Know Warning Signs</h4>
+          <p>Recognize numbness, discoloration, or chronic pain as red flags.</p>
+        </div>
+      </div>
+  </section>
+  <div id="popup-step1" class="popup-overlay">
+    <div class="popup-box">
+      <button class="popup-close" onclick="closePopup('popup-step1')">×</button>
+      <h3>Understand the Risks</h3>
+      <p>Diabetic neuropathy and poor circulation can cause serious foot complications if untreated.</p>
+      <a href="https://www.cdc.gov/diabetes/library/features/prevent-diabetes-foot-complications.html" target="_blank">Read more at CDC</a>
+    </div>
+  </div>
+  
+  <div id="popup-step2" class="popup-overlay">
+    <div class="popup-box">
+      <button class="popup-close" onclick="closePopup('popup-step2')">×</button>
+      <h3>Daily Foot Care</h3>
+      <p>Wash your feet daily, check for cuts or blisters, and moisturize to prevent dryness.</p>
+      <a href="https://www.diabetes.org/footcare" target="_blank">Foot care tips at ADA</a>
+    </div>
+  </div>
+  
+  <div id="popup-step3" class="popup-overlay">
+    <div class="popup-box">
+      <button class="popup-close" onclick="closePopup('popup-step3')">×</button>
+      <h3>Footwear Matters</h3>
+      <p>Wear comfortable, properly-fitted shoes to reduce pressure and avoid injury.</p>
+      <a href="https://www.apma.org/diabetesfootwear" target="_blank">Footwear advice at APMA</a>
+    </div>
+  </div>
+  
+  <div id="popup-step4" class="popup-overlay">
+    <div class="popup-box">
+      <button class="popup-close" onclick="closePopup('popup-step4')">×</button>
+      <h3>Be Active Safely</h3>
+      <p>Exercise improves circulation but inspect your feet after activity for any signs of irritation.</p>
+      <a href="https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems" target="_blank">NIDDK guide</a>
+    </div>
+  </div>
+  
+  <div id="popup-step5" class="popup-overlay">
+    <div class="popup-box">
+      <button class="popup-close" onclick="closePopup('popup-step5')">×</button>
+      <h3>Get Regular Checkups</h3>
+      <p>Podiatric checkups can detect early signs of foot complications before they worsen.</p>
+      <a href="https://www.cdc.gov/diabetes/managing/problems.html" target="_blank">CDC on managing diabetes</a>
+    </div>
+  </div>
+  
+  <div id="popup-step6" class="popup-overlay">
+    <div class="popup-box">
+      <button class="popup-close" onclick="closePopup('popup-step6')">×</button>
+      <h3>Trim Nails Carefully</h3>
+      <p>Cut straight across and file the edges to avoid ingrown toenails or skin damage.</p>
+      <a href="https://www.diabetes.co.uk/diabetes-complications/foot-care.html" target="_blank">Diabetes.co.uk foot care</a>
+    </div>
+  </div>
+  
+  <div id="popup-step7" class="popup-overlay">
+    <div class="popup-box">
+      <button class="popup-close" onclick="closePopup('popup-step7')">×</button>
+      <h3>Moisturize Wisely</h3>
+      <p>Use unscented lotion but avoid applying between the toes to reduce infection risk.</p>
+      <a href="https://www.healthline.com/health/diabetes/diabetic-foot-care" target="_blank">Healthline foot care guide</a>
+    </div>
+  </div>
+  
+  <div id="popup-step8" class="popup-overlay">
+    <div class="popup-box">
+      <button class="popup-close" onclick="closePopup('popup-step8')">×</button>
+      <h3>Don’t Ignore Symptoms</h3>
+      <p>If you notice numbness, tingling, or wounds that don’t heal—see a doctor immediately.</p>
+      <a href="https://my.clevelandclinic.org/health/diseases/17648-diabetic-foot-problems" target="_blank">Cleveland Clinic advice</a>
+    </div>
+  </div>
+  <footer class="footer">
+    <img src="images/driplogo.png" alt="Team DRIP Logo" class="logo-img" style="width: 100%;
+    height: auto;">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <a href="mheal-contact@umich.edu">Email Us</a>
+        <a href="https://forms.gle/yourformlink" target="_blank">Contact Form</a>
+      </div>
+      <div class="footer-column">
+        <h4>Socials</h4>
+        <a href="https://www.instagram.com/mheal_um/?hl=en">Instagram</a>
+        <a href="https://www.linkedin.com/company/m-heal">LinkedIn</a>
+        <a href="https://mheal.engin.umich.edu/drip">Team Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const path = document.querySelector('.roadmap-path');
+    const pathLength = path.getTotalLength();
+    const leg = document.getElementById('roadmap-leg');
+
+    function updateScrollAnimation() {
+      const scrollY = window.scrollY + window.innerHeight / 2;
+      const section = document.querySelector('.roadmap-section');
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+
+      const progress = Math.min(Math.max((scrollY - sectionTop) / sectionHeight, 0), 1);
+
+      // Reveal line
+      path.style.strokeDashoffset = pathLength * (1 - progress);
+
+      // Move leg
+      const point = path.getPointAtLength(pathLength * progress);
+      leg.style.left = `${point.x + section.offsetWidth / 2 - 300}px`;
+      leg.style.top = `${point.y}px`;
+
+      // Reveal cards
+      document.querySelectorAll('.roadmap-card').forEach(card => {
+        const cardTop = parseInt(card.style.top);
+        if (scrollY > cardTop + 100) {
+          card.classList.add('show');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateScrollAnimation);
+    window.addEventListener('load', updateScrollAnimation);
+    window.addEventListener('resize', updateScrollAnimation);
+    function showPopup(id) {
+    document.getElementById(id).style.display = 'flex';
+    }
+
+    function closePopup(id) {
+    document.getElementById(id).style.display = 'none';
+    }
+  </script>
+  <script>
+    function showPopup(id) {
+      document.getElementById(id).style.display = "flex";
+      document.body.classList.add('popup-open');
+    }
+  
+    function closePopup(id) {
+      document.getElementById(id).style.display = "none";
+      document.body.classList.remove('popup-open');
+    }
+  
+    // Close popup on background click
+    document.addEventListener("click", function (e) {
+      if (e.target.classList.contains("popup-overlay")) {
+        e.target.style.display = "none";
+        document.body.classList.remove("popup-open");
+      }
+    });
+  </script>
+</body>
+</html>

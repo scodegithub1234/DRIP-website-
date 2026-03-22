@@ -1,488 +1,573 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pamphlet | Team DRIP</title>
+  <title>Educational Pamphlet | Team DRIP</title>
   <link rel="stylesheet" href="styles.css">
   <style>
+    :root {
+      --bg: #f4fbff;
+      --card: rgba(255, 255, 255, 0.86);
+      --ink: #072a37;
+      --muted: rgba(7, 42, 55, 0.72);
+      --border: rgba(7, 42, 55, 0.14);
+      --primary: #0077b6;
+      --primary-2: #00b4d8;
+      --shadow: 0 18px 44px rgba(0, 0, 0, 0.14);
+      --shadow-soft: 0 10px 22px rgba(0, 0, 0, 0.10);
+      --radius: 18px;
+    }
+
     body {
       margin: 0;
-      font-family: sans-serif;
-      background: #f0f8ff;
-      overflow-x: hidden;
-      
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      background-image:
+        radial-gradient(1200px 520px at 20% -10%, rgba(0, 180, 216, 0.18), transparent 60%),
+        radial-gradient(900px 480px at 85% 0%, rgba(0, 119, 182, 0.16), transparent 55%),
+        url('images/lightbluebg.jpg');
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
-    .roadmap-section {
+    .wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 26px 18px 50px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 16px;
+      align-items: stretch;
+      margin-top: 8px;
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      padding: 22px 20px;
+      backdrop-filter: blur(10px);
+      overflow: hidden;
       position: relative;
-      height: 2000px;
-      background-image: url('../images/lightbluebg.jpg');
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; 
-      padding-top: 100px;
     }
 
-    .roadmap-svg {
+    .hero-card::before {
+      content: "";
       position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 2000px;
-      z-index: 0;
+      inset: -80px -140px auto auto;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle at 30% 30%, rgba(0,180,216,0.35), rgba(0,119,182,0.0) 70%);
+      transform: rotate(18deg);
       pointer-events: none;
     }
 
-    .roadmap-path-bg {
-      stroke: #0077b620;
-      stroke-width: 4;
-      fill: none;
+    .hero h1 {
+      margin: 0 0 8px 0;
+      font-size: clamp(28px, 3.2vw, 44px);
+      letter-spacing: -0.02em;
+      line-height: 1.06;
     }
 
-    .roadmap-path {
-      stroke: #0077b6;
-      stroke-width: 4;
-      fill: none;
-      stroke-dasharray: 5000;
-      stroke-dashoffset: 5000;
-      transition: stroke-dashoffset 0.2s ease-out;
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 72ch;
+      font-size: 15px;
     }
 
-    .roadmap-leg {
-      position: absolute;
-      font-size: 2rem;
-      z-index: 2;
-      transform: translate(-50%, -50%);
-      transition: top 0.1s, left 0.1s;
+    .hero-bullets {
+      margin: 14px 0 0 0;
+      padding-left: 18px;
+      color: rgba(7, 42, 55, 0.78);
+      line-height: 1.6;
+      font-size: 14px;
     }
 
-    .roadmap-cards {
+    .hero-aside {
+      background: linear-gradient(135deg, rgba(0,180,216,0.16), rgba(0,119,182,0.10));
+      border: 1px solid rgba(0, 77, 111, 0.18);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      padding: 18px;
       position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
     }
 
-    .roadmap-card {
-      width: 280px;
-      padding: 1rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    .hero-aside::after {
+      content: "";
       position: absolute;
-      opacity: 0;
-      transition: all 0.6s ease;
+      inset: auto -80px -90px auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 40% 40%, rgba(255,255,255,0.55), rgba(255,255,255,0));
+      pointer-events: none;
     }
 
-    .roadmap-card.show {
-      opacity: 1;
+    .hero-aside h2 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: rgba(7, 42, 55, 0.82);
     }
 
-    .roadmap-card:nth-child(odd) {
-      left: 5%;
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    .roadmap-card:nth-child(even) {
-      right: 5%;
-    }
-    .roadmap-card {
-    width: 280px;
-    padding: 1rem;
-    background: #ffffff;
-    border-radius: 15px;
-    border-left: 6px solid #00b4d8;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    opacity: 0;
-    transition: all 0.6s ease;
-    cursor: pointer;
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(7, 42, 55, 0.14);
+      color: rgba(7, 42, 55, 0.88);
+      font-weight: 700;
+      font-size: 13px;
+      user-select: none;
     }
 
-    .roadmap-card h4 {
-    margin-top: 0;
-    color: #0077b6;
+    .chip .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--primary-2), var(--primary));
+      box-shadow: 0 6px 16px rgba(0, 180, 216, 0.28);
     }
 
-    .popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 119, 182, 0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    .section {
+      margin-top: 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(10px);
     }
 
-    .popup-content {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 2rem;
-    max-width: 500px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    text-align: center;
-    animation: fadeIn 0.3s ease;
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 2px 2px 12px;
+      border-bottom: 1px solid rgba(7, 42, 55, 0.10);
+      margin-bottom: 16px;
     }
 
-    .popup-content h3 {
-    color: #023e8a;
+    .section-head .title {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
-    .popup-content a {
-    display: inline-block;
-    margin-top: 1rem;
-    color: #0077b6;
-    text-decoration: underline;
+    .section-head h3 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -0.01em;
     }
 
-    .popup-content button {
-    margin-top: 1.5rem;
-    padding: 0.5rem 1rem;
-    border: none;
-    background-color: #00b4d8;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
+    .section-head .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
     }
 
-    @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
-    /* Popup overlay */
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 119, 182, 0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
 
-/* Popup content box */
-.popup-box {
-  background: white;
-  padding: 2rem;
-  border-radius: 15px;
-  max-width: 90%;
-  width: 400px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  text-align: center;
-  animation: fadeIn 0.3s ease;
-}
+    .btn {
+      appearance: none;
+      border: 1px solid rgba(7, 42, 55, 0.16);
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--ink);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      user-select: none;
+      line-height: 1;
+    }
 
-/* Button and link styling */
-.popup-box h3 {
-  color: #023e8a;
-  margin-top: 0;
-}
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(0, 119, 182, 0.38);
+      background: rgba(0, 180, 216, 0.08);
+    }
 
-.popup-box p {
-  color: #333;
-}
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
 
-.popup-box a {
-  display: block;
-  margin: 1rem 0;
-  color: #0077b6;
-  text-decoration: underline;
-}
+    .btn.primary {
+      border-color: rgba(0, 119, 182, 0.35);
+      background: linear-gradient(90deg, rgba(0, 180, 216, 0.18), rgba(0, 119, 182, 0.12));
+    }
 
-.popup-close {
-  background: #00b4d8;
-  color: white;
-  border: none;
-  padding: 0.5rem 1.2rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-/* Card hover animation */
-.roadmap-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
-}
-.roadmap-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
+    .kbd {
+      font-size: 12px;
+      color: rgba(7, 42, 55, 0.72);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(7, 42, 55, 0.12);
+      background: rgba(255, 255, 255, 0.65);
+    }
 
-/* Popup overlay */
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 119, 182, 0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
+    .book-stage {
+      display: grid;
+      grid-template-columns: 1fr;
+      place-items: center;
+      padding: 8px 0 10px;
+    }
 
-/* Popup content */
-.popup-box {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 15px;
-  max-width: 90%;
-  width: 400px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  text-align: center;
-  position: relative;
-  animation: fadeIn 0.3s ease;
-}
+    .book {
+      width: min(980px, 100%);
+      height: min(66vh, 640px);
+      position: relative;
+      perspective: 1800px;
+    }
 
-/* Close "X" button */
-.popup-close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #0077b6;
-  cursor: pointer;
-}
+    .book-shadow {
+      position: absolute;
+      inset: 12px 0 0 0;
+      border-radius: 26px;
+      background: radial-gradient(110% 80% at 50% 30%, rgba(0,0,0,0.16), rgba(0,0,0,0));
+      filter: blur(14px);
+      transform: translateY(10px);
+      pointer-events: none;
+    }
 
-/* Typography and links */
-.popup-box h3 {
-  color: #023e8a;
-  margin-top: 0;
-}
+    .sheet {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transform-origin: left center;
+      transition: transform 820ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
 
-.popup-box p {
-  color: #333;
-}
+    .sheet.flipped {
+      transform: rotateY(-180deg);
+    }
 
-.popup-box a {
-  display: block;
-  margin: 1rem 0;
-  color: #0077b6;
-  text-decoration: underline;
-}
+    .face {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      backface-visibility: hidden;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 22px 52px rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(7, 42, 55, 0.14);
+      background: #fff;
+    }
 
-/* Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    .face.back {
+      transform: rotateY(180deg);
+    }
 
-/* Prevent scroll when popup is open */
-body.popup-open {
-  overflow: hidden;
-}
+    .page {
+      position: relative;
+      background: #fff;
+      overflow: hidden;
+    }
 
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #ffffffdd;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 999;
-  }
-  .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #0177a8;
-  }
-  .nav-links {
-    display: flex;
-    gap: 1.2rem;
-    list-style: none;
-  }
-  .nav-links a {
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    background-color: #0177a8;
-    color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-    transition: background-color 0.3s ease;
-  }
-  .nav-links a:hover {
-    background-color: #015c85;
-  }
+    .page.left {
+      border-right: 1px solid rgba(7, 42, 55, 0.10);
+    }
 
+    .page::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(90% 90% at 10% 50%, rgba(0,0,0,0.08), transparent 55%);
+      opacity: 0.6;
+      mix-blend-mode: multiply;
+    }
+
+    .page.left::after {
+      background: radial-gradient(90% 90% at 90% 50%, rgba(0,0,0,0.08), transparent 55%);
+    }
+
+    .page img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: #fff;
+    }
+
+    .page-btn {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(7, 42, 55, 0.16);
+      background: rgba(255, 255, 255, 0.9);
+      color: rgba(7, 42, 55, 0.92);
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease;
+      user-select: none;
+    }
+
+    .page-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(0, 119, 182, 0.42);
+    }
+
+    .page-btn .mini-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--primary-2), var(--primary));
+      box-shadow: 0 10px 18px rgba(0, 180, 216, 0.20);
+    }
+
+    .gutter {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 18px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg,
+        rgba(0,0,0,0.08),
+        rgba(255,255,255,0.0),
+        rgba(0,0,0,0.08));
+      opacity: 0.38;
+      pointer-events: none;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 9999;
+      background: rgba(5, 22, 30, 0.76);
+      padding: 20px;
+    }
+
+    .modal.show {
+      display: grid;
+      place-items: center;
+    }
+
+    .modal-card {
+      width: min(920px, 96vw);
+      max-height: 90vh;
+      overflow: auto;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      border-radius: 20px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+      padding: 16px;
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(7, 42, 55, 0.12);
+      margin-bottom: 12px;
+    }
+
+    .modal-head h4 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    .modal-head p {
+      margin: 6px 0 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      max-width: 74ch;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .link-card {
+      border: 1px solid rgba(7, 42, 55, 0.14);
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      padding: 14px 14px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .link-card h5 {
+      margin: 0 0 6px 0;
+      font-size: 14px;
+      color: rgba(0, 77, 111, 0.92);
+    }
+
+    .link-card a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 900;
+      word-break: break-word;
+    }
+
+    .link-card a:hover {
+      text-decoration: underline;
+    }
+
+    .modal-actions {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      max-width: 75ch;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .book {
+        height: min(62vh, 560px);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .face {
+        grid-template-columns: 1fr;
+      }
+
+      .page.left {
+        display: none;
+      }
+
+      .gutter {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+      }
+    }
   </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-          <div class="logo">Team DRIP</div>
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="resources.html">Diabetes Resources</a></li>
-            <li><a href="pamphlet.html">Educational Pamphlet</a></li>
-            <li><a href="mentalhealth.html">Mental Health & Activities</a></li>
-          </ul>
-        </nav>
-      </header>
-    
-      <section class="about-team">
-        <h2>Learn About Diabetic Amputation</h2>
-        <!-- <p>Click the button below to view more info in a pop-up.</p>
-        <button onclick="showPopup('amputation-info')">What Causes Diabetic Amputation?</button>
-        <div id="amputation-info" class="popup">
-          <h3>Causes and Prevention</h3>
-          <p>Diabetic amputations are often the result of poor circulation and infection. Regular checkups, foot care, and glucose management are essential to prevention.</p>
-          <button onclick="closePopup('amputation-info')">Close</button>
-        </div> -->
-      </section>
-  <section class="roadmap-section">
-    <svg class="roadmap-svg" viewBox="0 0 600 2000" preserveAspectRatio="none">
-      <path class="roadmap-path-bg"
-        d="M300 0 
-           C 500 200, 100 400, 300 600 
-           C 500 800, 100 1000, 300 1200 
-           C 500 1400, 100 1600, 300 1800" />
-      <path class="roadmap-path"
-        d="M300 0 
-           C 500 200, 100 400, 300 600 
-           C 500 800, 100 1000, 300 1200 
-           C 500 1400, 100 1600, 300 1800" />
-    </svg>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Team DRIP</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="resources.html">Diabetes Resources</a></li>
+        <li><a href="pamphlet.html">Educational Pamphlet</a></li>
+        <li><a href="mentalhealth.html">Mental Health & Activities</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <div class="roadmap-leg" id="roadmap-leg"><img src="images/kneeicon.png" alt="Knee icon"></div>
+  <div class="wrap">
+    <section class="hero" aria-label="Educational pamphlet overview">
+      <div class="hero-card">
+        <h1>Interactive Educational Pamphlet</h1>
+        <p>Read the pamphlet like a book with page-turn animation. Tap the info button on any page for Spanish-language resources and related guidance.</p>
+        <ul class="hero-bullets">
+          <li>Next/Prev buttons or Left/Right arrow keys</li>
+          <li>Click &ldquo;Info&rdquo; to open Spanish resources (fuentes en espa&ntilde;ol)</li>
+          <li>Use &ldquo;Ver recursos&rdquo; to jump to the Diabetes Resources page</li>
+        </ul>
+      </div>
+      <aside class="hero-aside" aria-label="Quick tips">
+        <h2>Quick actions</h2>
+        <div class="chip-row">
+          <div class="chip"><span class="dot"></span> Inspect feet daily</div>
+          <div class="chip"><span class="dot"></span> Don&rsquo;t ignore wounds</div>
+          <div class="chip"><span class="dot"></span> Ask for foot exams</div>
+          <div class="chip"><span class="dot"></span> Wear proper footwear</div>
+        </div>
+      </aside>
+    </section>
 
-    <div class="roadmap-cards">
-        <div class="roadmap-card" style="top: 100px;" onclick="showPopup('popup-step1')">
-          <h4>Step 1: Understand the Risks</h4>
-          <p>Recognize how diabetes can lead to complications like nerve damage or poor circulation.</p>
+    <section class="section" aria-label="Pamphlet book reader">
+      <div class="section-head">
+        <div class="title">
+          <h3>Book View</h3>
+          <p class="sub">Desktop shows two pages. Mobile shows one page. Click Info for Spanish resources.</p>
         </div>
-        <div class="roadmap-card" style="top: 300px;" onclick="showPopup('popup-step2')">
-          <h4>Step 2: Monitor Blood Sugar</h4>
-          <p>Track your glucose levels regularly to prevent spikes that damage nerves.</p>
-        </div>
-        <div class="roadmap-card" style="top: 500px;" onclick="showPopup('popup-step3')">
-          <h4>Step 3: Inspect Feet Daily</h4>
-          <p>Look for cuts, sores, and swelling to catch infections early.</p>
-        </div>
-        <div class="roadmap-card" style="top: 700px;" onclick="showPopup('popup-step4')">
-          <h4>Step 4: Wear Proper Footwear</h4>
-          <p>Use diabetic-friendly shoes to avoid pressure points and injuries.</p>
-        </div>
-        <div class="roadmap-card" style="top: 900px;" onclick="showPopup('popup-step5')">
-          <h4>Step 5: Exercise Regularly</h4>
-          <p>Movement helps with circulation and controlling blood sugar levels.</p>
-        </div>
-        <div class="roadmap-card" style="top: 1100px;" onclick="showPopup('popup-step6')">
-          <h4>Step 6: Manage Diet</h4>
-          <p>Choose foods that stabilize glucose and promote healing.</p>
-        </div>
-        <div class="roadmap-card" style="top: 1300px;" onclick="showPopup('popup-step7')">
-          <h4>Step 7: Routine Doctor Visits</h4>
-          <p>Early intervention can prevent escalation of foot-related issues.</p>
-        </div>
-        <div class="roadmap-card" style="top: 1500px;" onclick="showPopup('popup-step8')">
-          <h4>Step 8: Know Warning Signs</h4>
-          <p>Recognize numbness, discoloration, or chronic pain as red flags.</p>
+        <div class="controls">
+          <button class="btn" type="button" id="prevBtn">Prev</button>
+          <button class="btn primary" type="button" id="nextBtn">Next</button>
+          <span class="kbd" id="status">Pages 1&ndash;2 of 20</span>
         </div>
       </div>
-  </section>
-  <div id="popup-step1" class="popup-overlay">
-    <div class="popup-box">
-      <button class="popup-close" onclick="closePopup('popup-step1')">×</button>
-      <h3>Understand the Risks</h3>
-      <p>Diabetic neuropathy and poor circulation can cause serious foot complications if untreated.</p>
-      <a href="https://www.cdc.gov/diabetes/library/features/prevent-diabetes-foot-complications.html" target="_blank">Read more at CDC</a>
-    </div>
+
+      <div class="book-stage">
+        <div class="book" id="book">
+          <div class="book-shadow"></div>
+          <div class="gutter" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="small">
+        Keyboard: Left/Right = Prev/Next, Home/End = first/last, Esc = close popup.
+      </div>
+    </section>
   </div>
-  
-  <div id="popup-step2" class="popup-overlay">
-    <div class="popup-box">
-      <button class="popup-close" onclick="closePopup('popup-step2')">×</button>
-      <h3>Daily Foot Care</h3>
-      <p>Wash your feet daily, check for cuts or blisters, and moisturize to prevent dryness.</p>
-      <a href="https://www.diabetes.org/footcare" target="_blank">Foot care tips at ADA</a>
-    </div>
-  </div>
-  
-  <div id="popup-step3" class="popup-overlay">
-    <div class="popup-box">
-      <button class="popup-close" onclick="closePopup('popup-step3')">×</button>
-      <h3>Footwear Matters</h3>
-      <p>Wear comfortable, properly-fitted shoes to reduce pressure and avoid injury.</p>
-      <a href="https://www.apma.org/diabetesfootwear" target="_blank">Footwear advice at APMA</a>
-    </div>
-  </div>
-  
-  <div id="popup-step4" class="popup-overlay">
-    <div class="popup-box">
-      <button class="popup-close" onclick="closePopup('popup-step4')">×</button>
-      <h3>Be Active Safely</h3>
-      <p>Exercise improves circulation but inspect your feet after activity for any signs of irritation.</p>
-      <a href="https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems" target="_blank">NIDDK guide</a>
-    </div>
-  </div>
-  
-  <div id="popup-step5" class="popup-overlay">
-    <div class="popup-box">
-      <button class="popup-close" onclick="closePopup('popup-step5')">×</button>
-      <h3>Get Regular Checkups</h3>
-      <p>Podiatric checkups can detect early signs of foot complications before they worsen.</p>
-      <a href="https://www.cdc.gov/diabetes/managing/problems.html" target="_blank">CDC on managing diabetes</a>
-    </div>
-  </div>
-  
-  <div id="popup-step6" class="popup-overlay">
-    <div class="popup-box">
-      <button class="popup-close" onclick="closePopup('popup-step6')">×</button>
-      <h3>Trim Nails Carefully</h3>
-      <p>Cut straight across and file the edges to avoid ingrown toenails or skin damage.</p>
-      <a href="https://www.diabetes.co.uk/diabetes-complications/foot-care.html" target="_blank">Diabetes.co.uk foot care</a>
-    </div>
-  </div>
-  
-  <div id="popup-step7" class="popup-overlay">
-    <div class="popup-box">
-      <button class="popup-close" onclick="closePopup('popup-step7')">×</button>
-      <h3>Moisturize Wisely</h3>
-      <p>Use unscented lotion but avoid applying between the toes to reduce infection risk.</p>
-      <a href="https://www.healthline.com/health/diabetes/diabetic-foot-care" target="_blank">Healthline foot care guide</a>
-    </div>
-  </div>
-  
-  <div id="popup-step8" class="popup-overlay">
-    <div class="popup-box">
-      <button class="popup-close" onclick="closePopup('popup-step8')">×</button>
-      <h3>Don’t Ignore Symptoms</h3>
-      <p>If you notice numbness, tingling, or wounds that don’t heal—see a doctor immediately.</p>
-      <a href="https://my.clevelandclinic.org/health/diseases/17648-diabetic-foot-problems" target="_blank">Cleveland Clinic advice</a>
-    </div>
-  </div>
+
   <footer class="footer">
-    <img src="images/driplogo.png" alt="Team DRIP Logo" class="logo-img" style="width: 100%;
-    height: auto;">
+    <img src="images/driplogo.png" alt="Team DRIP Logo" class="logo-img" style="width: 100%; height: auto;">
     <div class="footer-content">
       <div class="footer-column">
         <h4>Contact</h4>
-        <a href="mheal-contact@umich.edu">Email Us</a>
-        <a href="https://forms.gle/yourformlink" target="_blank">Contact Form</a>
+        <a href="mailto:mheal-contact@umich.edu">Email Us</a>
+        <a href="mailto:mheal-contact@umich.edu?subject=Team%20DRIP%20Contact">Contact Us</a>
       </div>
       <div class="footer-column">
         <h4>Socials</h4>
@@ -493,65 +578,259 @@ body.popup-open {
     </div>
   </footer>
 
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Spanish resources popup">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <h4 id="modalTitle">Recursos en espa&ntilde;ol</h4>
+          <p id="modalDesc">Fuentes en espa&ntilde;ol para aprender m&aacute;s sobre diabetes, pie diab&eacute;tico y &uacute;lceras.</p>
+        </div>
+        <button class="btn primary" type="button" id="closeBtn">&times; Close</button>
+      </div>
+      <div class="links" id="modalLinks"></div>
+      <div class="modal-actions">
+        <a class="btn" href="resources.html#diabetic-foot">Ver recursos: pie diab&eacute;tico</a>
+        <a class="btn" href="resources.html#foot-care">Ver recursos: prevenci&oacute;n</a>
+      </div>
+      <div class="small" style="margin-top: 10px;">
+        Nota: Esta informaci&oacute;n es educativa y no reemplaza una evaluaci&oacute;n m&eacute;dica.
+      </div>
+    </div>
+  </div>
+
   <script>
-    const path = document.querySelector('.roadmap-path');
-    const pathLength = path.getTotalLength();
-    const leg = document.getElementById('roadmap-leg');
+    const pages = Array.from({ length: 20 }, (_, i) => ({
+      n: i + 1,
+      src: `images/page_${i + 1}.png`,
+    }));
 
-    function updateScrollAnimation() {
-      const scrollY = window.scrollY + window.innerHeight / 2;
-      const section = document.querySelector('.roadmap-section');
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
+    const spanishSources = {
+      general: [
+        {
+          title: 'MedlinePlus (espa&ntilde;ol): Diabetes',
+          url: 'https://medlineplus.gov/spanish/diabetes.html',
+          label: 'Abrir'
+        },
+        {
+          title: 'NIDDK (espa&ntilde;ol): Diabetes',
+          url: 'https://www.niddk.nih.gov/health-information/informacion-de-la-salud/diabetes',
+          label: 'Abrir'
+        }
+      ],
+      foot: [
+        {
+          title: 'MedlinePlus (espa&ntilde;ol): Pie diab&eacute;tico',
+          url: 'https://medlineplus.gov/spanish/diabeticfoot.html',
+          label: 'Abrir'
+        },
+        {
+          title: 'CDC (espa&ntilde;ol): La diabetes y los pies',
+          url: 'https://www.cdc.gov/diabetes/es/diabetes-complications/la-diabetes-y-los-pies.html',
+          label: 'Abrir'
+        },
+        {
+          title: 'MedlinePlus (espa&ntilde;ol): Cuidado de los pies en caso de diabetes',
+          url: 'https://medlineplus.gov/spanish/ency/patientinstructions/000081.htm',
+          label: 'Abrir'
+        }
+      ],
+      ulcers: [
+        {
+          title: 'MedlinePlus (espa&ntilde;ol): &Uacute;lceras en los pies por diabetes',
+          url: 'https://medlineplus.gov/spanish/ency/patientinstructions/000077.htm',
+          label: 'Abrir'
+        },
+        {
+          title: 'Mayo Clinic (espa&ntilde;ol): Amputaci&oacute;n y diabetes',
+          url: 'https://www.mayoclinic.org/es/diseases-conditions/diabetes/in-depth/amputation-and-diabetes/art-20048262',
+          label: 'Abrir'
+        },
+        {
+          title: 'IMSS (M&eacute;xico): Sitio oficial',
+          url: 'https://www.imss.gob.mx/',
+          label: 'Abrir'
+        }
+      ]
+    };
 
-      const progress = Math.min(Math.max((scrollY - sectionTop) / sectionHeight, 0), 1);
+    function pickSourcesForPage(pageNumber) {
+      if (pageNumber <= 6) return [...spanishSources.general, ...spanishSources.foot];
+      if (pageNumber <= 14) return [...spanishSources.foot, ...spanishSources.ulcers];
+      return [...spanishSources.ulcers, ...spanishSources.foot];
+    }
 
-      // Reveal line
-      path.style.strokeDashoffset = pathLength * (1 - progress);
+    const book = document.getElementById('book');
+    const status = document.getElementById('status');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
 
-      // Move leg
-      const point = path.getPointAtLength(pathLength * progress);
-      leg.style.left = `${point.x + section.offsetWidth / 2 - 300}px`;
-      leg.style.top = `${point.y}px`;
+    const modal = document.getElementById('modal');
+    const modalLinks = document.getElementById('modalLinks');
+    const modalTitle = document.getElementById('modalTitle');
+    const closeBtn = document.getElementById('closeBtn');
 
-      // Reveal cards
-      document.querySelectorAll('.roadmap-card').forEach(card => {
-        const cardTop = parseInt(card.style.top);
-        if (scrollY > cardTop + 100) {
-          card.classList.add('show');
+    const sheets = [];
+    const totalSheets = Math.ceil(pages.length / 2);
+    let sheetIndex = 0;
+
+    function makeLinkCard(item) {
+      const card = document.createElement('div');
+      card.className = 'link-card';
+
+      const h5 = document.createElement('h5');
+      h5.innerHTML = item.title;
+
+      const a = document.createElement('a');
+      a.href = item.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = item.label || 'Abrir';
+
+      card.appendChild(h5);
+      card.appendChild(a);
+      return card;
+    }
+
+    function openModalForPage(pageNumber) {
+      modalTitle.textContent = `Recursos en espa\u00F1ol (P\u00E1gina ${pageNumber})`;
+      modalLinks.innerHTML = '';
+      const sources = pickSourcesForPage(pageNumber);
+      sources.forEach((s) => modalLinks.appendChild(makeLinkCard(s)));
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    function pageButton(pageNumber) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'page-btn';
+      btn.innerHTML = '<span class="mini-dot"></span> Info';
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModalForPage(pageNumber);
+      });
+      return btn;
+    }
+
+    function pageEl(sideClass, page) {
+      const pageDiv = document.createElement('div');
+      pageDiv.className = `page ${sideClass}`;
+      pageDiv.tabIndex = 0;
+      pageDiv.setAttribute('role', 'button');
+      pageDiv.setAttribute('aria-label', `Open info for page ${page.n}`);
+
+      const img = document.createElement('img');
+      img.alt = `Pamphlet page ${page.n}`;
+      img.loading = 'lazy';
+      img.src = page.src;
+
+      pageDiv.appendChild(img);
+      pageDiv.appendChild(pageButton(page.n));
+
+      pageDiv.addEventListener('click', () => openModalForPage(page.n));
+      pageDiv.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModalForPage(page.n);
         }
       });
+      return pageDiv;
     }
 
-    window.addEventListener('scroll', updateScrollAnimation);
-    window.addEventListener('load', updateScrollAnimation);
-    window.addEventListener('resize', updateScrollAnimation);
-    function showPopup(id) {
-    document.getElementById(id).style.display = 'flex';
+    function createSheet(frontLeft, frontRight, backLeft, backRight) {
+      const sheet = document.createElement('div');
+      sheet.className = 'sheet';
+
+      const front = document.createElement('div');
+      front.className = 'face front';
+
+      if (frontLeft) front.appendChild(pageEl('left', frontLeft));
+      if (frontRight) front.appendChild(pageEl('right', frontRight));
+
+      const back = document.createElement('div');
+      back.className = 'face back';
+
+      if (backLeft) back.appendChild(pageEl('left', backLeft));
+      if (backRight) back.appendChild(pageEl('right', backRight));
+
+      sheet.appendChild(front);
+      sheet.appendChild(back);
+      return sheet;
     }
 
-    function closePopup(id) {
-    document.getElementById(id).style.display = 'none';
+    function updateStatus() {
+      const leftPage = sheetIndex * 2 + 1;
+      const rightPage = Math.min(leftPage + 1, pages.length);
+      status.textContent = `Pages ${leftPage}\u2013${rightPage} of ${pages.length}`;
+      prevBtn.disabled = sheetIndex === 0;
+      nextBtn.disabled = sheetIndex === totalSheets - 1;
     }
-  </script>
-  <script>
-    function showPopup(id) {
-      document.getElementById(id).style.display = "flex";
-      document.body.classList.add('popup-open');
+
+    function goNext() {
+      if (sheetIndex >= totalSheets - 1) return;
+      sheets[sheetIndex].classList.add('flipped');
+      sheetIndex += 1;
+      updateStatus();
     }
-  
-    function closePopup(id) {
-      document.getElementById(id).style.display = "none";
-      document.body.classList.remove('popup-open');
+
+    function goPrev() {
+      if (sheetIndex <= 0) return;
+      sheetIndex -= 1;
+      sheets[sheetIndex].classList.remove('flipped');
+      updateStatus();
     }
-  
-    // Close popup on background click
-    document.addEventListener("click", function (e) {
-      if (e.target.classList.contains("popup-overlay")) {
-        e.target.style.display = "none";
-        document.body.classList.remove("popup-open");
+
+    // Build sheets: 10 sheets for 20 pages
+    for (let i = 0; i < totalSheets; i++) {
+      const frontLeft = pages[i * 2] || null;
+      const frontRight = pages[i * 2 + 1] || null;
+      const backLeft = pages[i * 2 + 2] || null;
+      const backRight = pages[i * 2 + 3] || null;
+      const sheet = createSheet(frontLeft, frontRight, backLeft, backRight);
+      sheet.style.zIndex = String(totalSheets - i);
+      book.appendChild(sheet);
+      sheets.push(sheet);
+    }
+
+    prevBtn.addEventListener('click', goPrev);
+    nextBtn.addEventListener('click', goNext);
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      const isModalOpen = modal.classList.contains('show');
+      if (e.key === 'Escape' && isModalOpen) {
+        e.preventDefault();
+        closeModal();
+        return;
+      }
+      if (isModalOpen) return;
+
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goPrev();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goNext();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        while (sheetIndex > 0) goPrev();
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        while (sheetIndex < totalSheets - 1) goNext();
       }
     });
+
+    updateStatus();
   </script>
 </body>
 </html>

@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      grid-column: 1/-1; 
-    background-image: url('../images/lightbluebg.jpg');
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; 
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      grid-column: 1/-1;
+      background-image: url('images/lightbluebg.jpg');
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
       color: #003344;
       margin: 0;
       padding: 0;
@@ -49,30 +49,20 @@
     }
 
     .intro-type {
-      font-size: 24px;
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+      font-size: 20px;
+      max-width: 980px;
+      margin: 36px auto 0;
+      padding: 14px 20px;
       border-left: 4px solid #00acc1;
-      padding-left: 15px;
-      white-space: pre-wrap;
-      overflow: hidden;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink-caret {
-      50% { border-color: transparent; }
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      line-height: 1.5;
     }
 
     .resources-section {
       max-width: 1200px;
-      margin: 60px auto;
+      margin: 26px auto 60px;
       padding: 0 30px;
     }
 
@@ -84,13 +74,37 @@
     }
 
     .resource-category {
-      margin-bottom: 50px;
+      margin-bottom: 46px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(0, 77, 111, 0.14);
+      border-radius: 14px;
+      padding: 18px 18px 22px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(10px);
     }
 
     .category-title {
-      font-size: 28px;
-      margin-bottom: 15px;
+      font-size: 26px;
+      margin: 0 0 10px 0;
       color: #007c91;
+      letter-spacing: -0.01em;
+    }
+
+    .category-blurb {
+      margin: 0 0 12px 0;
+      color: #355;
+      line-height: 1.5;
+    }
+
+    .quick-steps {
+      margin: 0 0 18px 0;
+      padding-left: 18px;
+      color: #355;
+      line-height: 1.5;
+    }
+
+    .quick-steps li {
+      margin: 6px 0;
     }
 
     .resource-grid {
@@ -104,19 +118,21 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
       position: relative;
       cursor: pointer;
+      border: 1px solid rgba(0, 77, 111, 0.10);
     }
 
     .resource-card:hover {
-      transform: rotateZ(3deg) scale(1.03);
+      transform: translateY(-3px);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      border-color: rgba(0, 180, 216, 0.35);
     }
 
     .resource-card h3 {
       margin-top: 0;
-      font-size: 20px;
+      font-size: 18px;
       color: #004d6f;
     }
 
@@ -124,6 +140,19 @@
       font-size: 15px;
       line-height: 1.4;
       color: #444;
+      margin-bottom: 0;
+    }
+
+    .resource-card a {
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #007c91;
+      text-decoration: none;
+    }
+
+    .resource-card a:hover {
+      text-decoration: underline;
     }
 
     .footer {
@@ -152,103 +181,174 @@
       <li><a href="about.html">About Us</a></li>
       <li><a href="resources.html">Diabetes Resources</a></li>
       <li><a href="pamphlet.html">Educational Pamphlet</a></li>
-      <li><a href="mentalhealth.html">Mental Health & Activities</a></li>
+      <li><a href="mentalhealth.html">Mental Health &amp; Activities</a></li>
     </ul>
   </nav>
 </header>
 
-<section class="intro-type">Welcome to our curated set of diabetes resources — from blood sugar tracking to home remedies, we’ve gathered trustworthy tools to empower you in your health journey.
+<section class="intro-type">
+  Welcome to our curated set of diabetes resources &mdash; from tracking and nutrition tools to diabetic foot and ulcer education. If you think you have an infection or a wound that isn&rsquo;t healing, get medical help as soon as possible.
 </section>
 
 <section class="resources-section">
   <h2>Helpful Diabetes Resources</h2>
 
-  <!-- BLOOD TRACKING -->
   <div class="resource-category">
-    <h3 class="category-title">🩸 Blood Glucose Tracking</h3>
+    <h3 class="category-title">Blood Glucose Tracking</h3>
     <div class="resource-grid">
       <div class="resource-card">
-        <h3>MySugr App</h3>
-        <p>A friendly diabetes tracker app for logging blood glucose, meals, and activity. Syncs with most meters.</p>
-        <a href="https://mysugr.com/" target="_blank">Visit →</a>
+        <h3>mySugr</h3>
+        <p>Track blood glucose, meals, and activity in one place. Can sync with many meters.</p>
+        <a href="https://mysugr.com/" target="_blank" rel="noopener">Visit &rarr;</a>
       </div>
       <div class="resource-card">
         <h3>One Drop</h3>
-        <p>Provides real-time insights, reminders, and expert coaching for managing your numbers.</p>
-        <a href="https://onedrop.today/" target="_blank">Visit →</a>
+        <p>Insights and reminders for diabetes self-management, plus optional coaching.</p>
+        <a href="https://onedrop.today/" target="_blank" rel="noopener">Visit &rarr;</a>
       </div>
     </div>
   </div>
 
-  <!-- CALORIE COUNTING -->
   <div class="resource-category">
-    <h3 class="category-title">🥗 Calorie & Carb Counting</h3>
+    <h3 class="category-title">Calorie &amp; Carb Counting</h3>
     <div class="resource-grid">
       <div class="resource-card">
         <h3>Carb Manager</h3>
-        <p>Track carbs, macros, and more. Perfect for those managing insulin dosing or carb intake.</p>
-        <a href="https://www.carbmanager.com/" target="_blank">Visit →</a>
+        <p>Track carbs and macros to help manage meal planning and dosing decisions.</p>
+        <a href="https://www.carbmanager.com/" target="_blank" rel="noopener">Visit &rarr;</a>
       </div>
       <div class="resource-card">
         <h3>MyFitnessPal</h3>
-        <p>Tracks food, exercise, and weight. Includes a massive food database and barcode scanning.</p>
-        <a href="https://www.myfitnesspal.com/" target="_blank">Visit →</a>
+        <p>Food logging, activity tracking, and a large food database with barcode scanning.</p>
+        <a href="https://www.myfitnesspal.com/" target="_blank" rel="noopener">Visit &rarr;</a>
       </div>
     </div>
   </div>
 
-  <!-- WARNING SIGNS -->
   <div class="resource-category">
-    <h3 class="category-title">🚨 Warning Signs & Symptoms</h3>
+    <h3 class="category-title">Warning Signs &amp; Symptoms</h3>
     <div class="resource-grid">
       <div class="resource-card">
-        <h3>CDC Diabetes Info</h3>
-        <p>Learn early symptoms of Type 1 and 2 diabetes, including increased thirst, fatigue, and slow-healing wounds.</p>
-        <a href="https://www.cdc.gov/diabetes/basics/symptoms.html" target="_blank">Visit →</a>
+        <h3>CDC: Diabetes Symptoms</h3>
+        <p>Symptoms for type 1 and type 2 diabetes and when to talk with a health professional.</p>
+        <a href="https://www.cdc.gov/diabetes/basics/symptoms.html" target="_blank" rel="noopener">Visit &rarr;</a>
       </div>
       <div class="resource-card">
-        <h3>Diabetes UK: Signs</h3>
-        <p>Explore detailed symptom checklists and when to see a doctor.</p>
-        <a href="https://www.diabetes.org.uk/diabetes-the-basics/diabetes-symptoms" target="_blank">Visit →</a>
+        <h3>Diabetes UK: Symptoms</h3>
+        <p>Detailed symptom checklists and guidance on when to seek care.</p>
+        <a href="https://www.diabetes.org.uk/diabetes-the-basics/diabetes-symptoms" target="_blank" rel="noopener">Visit &rarr;</a>
       </div>
     </div>
   </div>
 
-  <!-- DIY SOLUTIONS -->
+  <div class="resource-category" id="diabetic-foot">
+    <h3 class="category-title">Diabetic Foot &amp; Ulcers</h3>
+    <div class="resource-grid">
+      <div class="resource-card">
+        <h3>MedlinePlus: Diabetic Foot</h3>
+        <p>Overview of diabetic foot problems, prevention, and when to get medical help.</p>
+        <a href="https://medlineplus.gov/diabeticfoot.html" target="_blank" rel="noopener">Visit &rarr;</a>
+      </div>
+      <div class="resource-card">
+        <h3>TecScience: Diabetic Foot Treatment</h3>
+        <p>Explains treatment approaches for diabetic foot and the reasoning behind them.</p>
+        <a href="https://tecscience.tec.mx/en/science-communication/diabetic-foot-treatment/" target="_blank" rel="noopener">Visit &rarr;</a>
+      </div>
+      <div class="resource-card">
+        <h3>Centro M&eacute;dico ABC: Diabetic Foot</h3>
+        <p>Clinical overview of diabetic foot conditions, risks, and care options.</p>
+        <a href="https://centromedicoabc.com/en/padecimientos/diabetic-foot/" target="_blank" rel="noopener">Visit &rarr;</a>
+      </div>
+      <div class="resource-card">
+        <h3>Semedi Salud: Care &amp; Prevention</h3>
+        <p>Guidance for daily care and prevention strategies for diabetic foot complications.</p>
+        <a href="https://semedisalud.com/en/diabetic-foot-how-to-care-for-and-prevent-it/" target="_blank" rel="noopener">Visit &rarr;</a>
+      </div>
+      <div class="resource-card">
+        <h3>Hospital La Paloma: Diabetic Foot Unit</h3>
+        <p>Information on specialized diabetic foot services and what to expect.</p>
+        <a href="https://www.hospitallapaloma.com/en/diabetic-foot-unit/" target="_blank" rel="noopener">Visit &rarr;</a>
+      </div>
+      <div class="resource-card">
+        <h3>IMSS (Mexico): Official Health Site</h3>
+        <p>Instituto Mexicano del Seguro Social (IMSS) &mdash; official public health resources.</p>
+        <a href="https://www.imss.gob.mx" target="_blank" rel="noopener">Visit &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="resource-category" id="foot-care">
+    <h3 class="category-title">Foot Care &amp; Prevention</h3>
+    <p class="category-blurb">These tips were previously on the Educational Pamphlet page and are kept here so everything is in one place.</p>
+    <ul class="quick-steps">
+      <li>Inspect your feet daily for cuts, blisters, redness, swelling, and nail issues.</li>
+      <li>Keep blood sugar in a healthy range and attend regular checkups.</li>
+      <li>Wear properly fitted footwear and avoid walking barefoot.</li>
+      <li>Stay active (as advised by your clinician) and check your feet after activity.</li>
+      <li>Don&rsquo;t ignore numbness, tingling, or wounds that don&rsquo;t heal.</li>
+    </ul>
+    <div class="resource-grid">
+      <div class="resource-card">
+        <h3>CDC: Prevent Diabetes-Related Foot Complications</h3>
+        <p>Why foot problems happen, what to watch for, and practical prevention steps.</p>
+        <a href="https://www.cdc.gov/diabetes/library/features/prevent-diabetes-foot-complications.html" target="_blank" rel="noopener">Visit &rarr;</a>
+      </div>
+      <div class="resource-card">
+        <h3>American Diabetes Association: Foot Care</h3>
+        <p>Foot care tips, warning signs, and when to talk with a health professional.</p>
+        <a href="https://diabetes.org/foot-care" target="_blank" rel="noopener">Visit &rarr;</a>
+      </div>
+      <div class="resource-card">
+        <h3>APMA: Diabetes &amp; Footwear</h3>
+        <p>Choosing appropriate footwear to reduce pressure points and prevent injury.</p>
+        <a href="https://www.apma.org/diabetesfootwear" target="_blank" rel="noopener">Visit &rarr;</a>
+      </div>
+      <div class="resource-card">
+        <h3>NIDDK: Foot Problems</h3>
+        <p>How diabetes affects the feet and steps to help prevent complications.</p>
+        <a href="https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems" target="_blank" rel="noopener">Visit &rarr;</a>
+      </div>
+      <div class="resource-card">
+        <h3>CDC: Managing Diabetes Problems</h3>
+        <p>Common complications and how to manage risks as part of diabetes care.</p>
+        <a href="https://www.cdc.gov/diabetes/managing/problems.html" target="_blank" rel="noopener">Visit &rarr;</a>
+      </div>
+    </div>
+  </div>
+
   <div class="resource-category">
-    <h3 class="category-title">🧪 DIY & Low-Cost Solutions</h3>
+    <h3 class="category-title">DIY &amp; Low-Cost Solutions</h3>
     <div class="resource-grid">
       <div class="resource-card">
         <h3>Low-Tech Insulin Cooling</h3>
         <p>How to build a clay-pot refrigerator (zeer pot) for insulin in low-resource settings.</p>
-        <a href="https://ghdonline.org/diabetes/discussion/clay-pot-cooling-systems-for-insulin-storage/" target="_blank">Visit →</a>
+        <a href="https://ghdonline.org/diabetes/discussion/clay-pot-cooling-systems-for-insulin-storage/" target="_blank" rel="noopener">Visit &rarr;</a>
       </div>
       <div class="resource-card">
         <h3>Diabetes Toolbox PDF</h3>
-        <p>Practical home remedies, alternative diet strategies, and glucose stabilization tips.</p>
-        <a href="https://static.diabetesdaily.com/content/pdf/Diabetes_Toolbox.pdf" target="_blank">Visit →</a>
+        <p>Practical tips and education in a downloadable reference format.</p>
+        <a href="https://static.diabetesdaily.com/content/pdf/Diabetes_Toolbox.pdf" target="_blank" rel="noopener">Visit &rarr;</a>
       </div>
     </div>
   </div>
 </section>
 
 <footer class="footer">
-    <img src="images/driplogo.png" alt="Team DRIP Logo" class="logo-img" style="width: 100%;
-    height: auto;">
-    <div class="footer-content">
-      <div class="footer-column">
-        <h4>Contact</h4>
-        <a href="mheal-contact@umich.edu">Email Us</a>
-        <a href="https://forms.gle/yourformlink" target="_blank">Contact Form</a>
-      </div>
-      <div class="footer-column">
-        <h4>Socials</h4>
-        <a href="https://www.instagram.com/mheal_um/?hl=en">Instagram</a>
-        <a href="https://www.linkedin.com/company/m-heal">LinkedIn</a>
-        <a href="https://mheal.engin.umich.edu/drip">Team Website</a>
-      </div>
+  <img src="images/driplogo.png" alt="Team DRIP Logo" class="logo-img" style="width: 100%; height: auto;">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h4>Contact</h4>
+      <a href="mailto:mheal-contact@umich.edu">Email Us</a>
+      <a href="mailto:mheal-contact@umich.edu?subject=Team%20DRIP%20Contact">Contact Us</a>
     </div>
-  </footer>
+    <div class="footer-column">
+      <h4>Socials</h4>
+      <a href="https://www.instagram.com/mheal_um/?hl=en">Instagram</a>
+      <a href="https://www.linkedin.com/company/m-heal">LinkedIn</a>
+      <a href="https://mheal.engin.umich.edu/drip">Team Website</a>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
